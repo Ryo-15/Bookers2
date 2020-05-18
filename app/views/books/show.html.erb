@@ -1,0 +1,49 @@
+<%# 投稿された本の詳細ページ %>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-3">
+      <%# 部分テンプレート %>
+      <%# プロフィール %>
+      <%= render 'layouts/userinfo', user: @user %>
+      <%# 新規投稿 %>
+      <%= render 'layouts/booknew', book: @book_new %>
+    </div>
+
+    <div class="col-xs-9">
+      <h2>Book detail</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+              <%# ユーザープロフィールへのリンク %>
+              <td>
+                <%= link_to user_path(@user.id) do %>
+                  <%= attachment_image_tag @user, :profile_image, format: 'jpeg', class: "profile-img", fallback: "no_image.jpg", size: "40x40" %><br>
+                  <%= @user.name %>
+                <% end %>
+              </td>
+              <%# 本詳細へのリンク(books_show) %>
+              <td><%= @book.title %></td>
+              <td><%= @book.body %></td>
+              <% if current_user.id == @book.user_id %>
+                <td><%= link_to "Edit", edit_book_path(@book.id), class: 'btn btn-success' %></td>
+                <td><%= link_to "Destroy", book_path(@book.id),method: :delete, class: 'btn btn-danger' %></td>
+              <% else %>
+                <td></td>
+                <td></td>
+              <% end %>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
