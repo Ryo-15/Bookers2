@@ -38,13 +38,30 @@
             <tr>
               <td>
                 <%# リンク先はbookに紐付いているユーザーページ %>
-                <%# 修正！！！！！！！！！ %>
                 <%= link_to user_path(book.user.id) do %>
                   <%= attachment_image_tag @user, :profile_image, format: 'jpeg', class: "profile-img", fallback: "no_image.jpg", size: "40x40" %>
                 <% end %>
               </td>
               <td><span><%= link_to book.title, "/books/#{book.id}" %></span></td>
               <td><%= book.body %></td>
+              <%# いいねを追加 %>
+              <% if book.favorited_by?(current_user) %>
+                <td>
+                  <%= link_to book_favorites_path(book), method: :delete do %>
+                  <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+                  <%= book.favorites.count %>
+                  <% end %>
+                </td>
+                <% else %>
+                <td>
+                  <%= link_to book_favorites_path(book), method: :post do %>
+                  <i class="far fa-heart" aria-hidden="true" style="color: gray;"></i>
+                  <%= book.favorites.count %>
+                  <% end %>
+                </td>
+              <% end %>
+              <%# コメント数を表示 %>
+              <td><p class="comment-count">コメント数：<%= book.book_comments.count %></p></td>
             </tr>
           <% end %>
         </tbody>

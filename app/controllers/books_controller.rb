@@ -39,6 +39,7 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
     @user = User.find(@book.user_id)
     @book_new = Book.new
+    @book_comment = BookComment.new
   end
 
   # 投稿された本の編集

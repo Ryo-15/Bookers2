@@ -14,6 +14,9 @@ class User < ApplicationRecord
   validates :introduction, length: {maximum: 50}
   #  Userモデルに対して、Bookモデルが1:Nになるよう関連付ける
   has_many :books, dependent: :destroy
+  # いいね、コメントも上に同様とする
+  has_many :favorites, dependent: :destroy
+  has_many :book_comments, dependent: :destroy
   # プロフィール画像の設定機能
   attachment :profile_image
 end

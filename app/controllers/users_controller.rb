@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-
   before_action :authenticate_user!, only: [:new, :index, :show, :edit, :update, :destroy]
   # 画面遷移防止(URL直打ち防止)
   before_action :correct_user, only: [:edit, :update]
@@ -27,9 +26,8 @@ class UsersController < ApplicationController
   # プロフィール編集を保存
   def update
     @user = User.find(params[:id])
-    @user.update(user_params)
     if @user.update(user_params)
-      redirect_to user_path(@user.id), notice:'You have updated user successfully.'
+      redirect_to user_path, notice:'You have updated user successfully.'
     else
       render :edit
     end

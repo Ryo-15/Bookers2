@@ -28,6 +28,8 @@
               <td><span><%= attachment_image_tag @user, :profile_image, format: 'jpeg', class: "profile-img", fallback: "no_image.jpg", size: "40x40" %></span></td>
               <td><span><%= link_to book.title, "/books/#{book.id}"%></span></td>
               <td><%= book.body %></td>
+              <%# コメント数を追加 %>
+              <td><p class="comment-count">コメント数：<%= book.book_comments.count %></p></td>
             </tr>
           <% end %>
         </tbody>
