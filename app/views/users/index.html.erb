@@ -25,9 +25,24 @@
         <tbody>
           <% @users.each do |user| %>
             <tr>
-              <td><a><%= attachment_image_tag @user, :profile_image, format: 'jpeg', class: "profile-img", fallback: "no_image.jpg", size: "40x40" %></a></td>
+              <td><a><%= attachment_image_tag user, :profile_image, format: 'jpeg', class: "profile-img", fallback: "no_image.jpg", size: "40x40" %></a></td>
               <td><%= user.name %></td>
-              <td><%= link_to "Show", user_path(user.id) %></td>
+              <%# フォロー・フォロワー数（それぞれリンクも作成） %>
+              <td><%= "フォロー数: #{user.follower.count}" %></td>
+              <td><%= "フォロワー数: #{user.followed.count}" %></td>
+              <%# フォローする・外すリンク（user_infoと同様） %>
+              <% if user.id == current_user.id %>
+                <td></td>
+              <% else %> <%# カレントユーザでない場合、リンクを表示 %>
+                <td>
+                  <% if current_user.following?(user) %>
+                    <%= link_to 'フォロー外す', relationship_path(user.id), method: :delete %>
+                  <% else %>
+                    <%= link_to 'フォローする', relationship_path(user.id), method: :post %>
+                  <% end %>
+                </td>
+              <% end %>
+                <td><%= link_to "Show", user_path(user.id) %></td>
             </tr>
           <% end %>
         </tbody>

@@ -14,6 +14,15 @@ Rails.application.routes.draw do
     resource :book_comments, only:[:create, :destroy]
   end
 
-    resources :users, only:[:index, :show, :edit, :new, :create, :update, :destroy]
+  # ユーザーのルーティング
+  resources :users, only:[:index, :show, :edit, :new, :create, :update, :destroy]
+  # userinfoからのフォロー・フォロワーview
+  get 'users/:id/follows' => 'users#follows', as: 'follows'
+  get 'users/:id/followers' => 'users#followers', as: 'followers'
+
+  # フォロー機能のルーティング
+  post "relationships/:id" => "relationships#create", as: "relationship"
+  resources :relationships, only:[:destroy] # create = follow, destroy = unfollow
+  
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -5,12 +5,14 @@ class BookCommentsController < ApplicationController
     comment.user_id = current_user.id
     comment.book_id = book.id
     comment.save
+    # 直線の画面に戻るリダイレクト（＋できなかった場合のパス）
     redirect_back(fallback_location: books_path)
   end
 
   def destroy
     book_comment = BookComment.find(params[:book_id])
     book_comment.destroy
+    # 直線の画面に戻るリダイレクト（＋できなかった場合のパス）
     redirect_back(fallback_location: books_path)
   end
 

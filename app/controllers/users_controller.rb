@@ -33,10 +33,21 @@ class UsersController < ApplicationController
     end
   end
 
+  # follow（自分がフォローした人のview）
+  def follows
+    @user = User.find(params[:id])
+  end
+
+  # followers（自分をフォローした人のview）
+  def followers
+    # 自分をフォローした人のidを引っ張る(viewにて記述)
+    @user = User.find(params[:id])
+  end
+
   # 他の人が編集できないようにする、before_acttionに繋がる
   def correct_user
     user = User.find(params[:id])
-    # もしユーザーがカレントユーザーだったら
+    # もしユーザーがカレントユーザーと不一致
     if current_user != user
       # カレントユーザーのユーザーパスへリダイレクト
       redirect_to user_path(current_user.id)
