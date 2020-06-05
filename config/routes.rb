@@ -23,6 +23,11 @@ Rails.application.routes.draw do
   # フォロー機能のルーティング
   post "relationships/:id" => "relationships#create", as: "relationship"
   resources :relationships, only:[:destroy] # create = follow, destroy = unfollow
-  
+
+  # 検索機能のルーティング
+  get "/search" => "search#search"
+  # 検索結果viewへのルーティング？
+  get "search/book_result" => ""
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

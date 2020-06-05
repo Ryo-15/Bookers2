@@ -17,8 +17,13 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+// 検索フォームを中央に寄せたい
+.search-form {
+  margin: 0 auto;
+}
+
 // 本の新規投稿ボタン（位置調整）
-.field1 {
+.field_create_book {
   margin-top: 20px;
 }
 

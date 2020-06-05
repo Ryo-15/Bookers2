@@ -44,9 +44,31 @@
       </div>
     </nav>
 
-
     <%# フラッシュメッセージ %>
-    <p id="notice"><%= notice %></p>
+    <div id="notice"><%= notice %></>
+
+    <div class="container">
+      <%# ログインしている場合、検索フォームを表示 %>
+      <% if user_signed_in? %>
+        <div class="search-form">
+          <%# 一致部分 puldown %>
+          <% choices= [
+            ["前方一致", "forward"],
+            ["後方一致", "backward"],
+            ["部分一致", "partial"],
+            ["完全一致", "parfect"]
+          ] %>
+          <%= form_with url: search_path, method: :get, local: :true do |f| %>
+            <%= f.text_field :search %>
+            <%# user or book select %>
+            <%# <%= f.select :path, [["Book", "books"], ["User", "users"]] %> %>
+            <%# 一致部分 select %>
+            <%# <%= f.select :type, choices, selected: "parfect" %> %>
+            <%= f.submit '検索', :name => nil %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
 
     <%= yield %>
 
