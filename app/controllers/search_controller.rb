@@ -1,11 +1,14 @@
 class SearchController < ApplicationController
   # 検索機能を追加（searchアクション）
   def search
+    @word = params[:word]
+    @path = params[:path]
+    match = params[:match]
     case params[:path]
     when "books"
-      redirect_to Something_path # bookの検索結果画面へ
+      @books = Book.search(@word, match)
     when "users"
-      redirect_to Something_path # userの検索結果画面へ
+      @users = User.search(@word, match)
     else
     end
   end

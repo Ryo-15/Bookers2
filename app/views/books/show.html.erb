@@ -82,6 +82,8 @@
             <%# コメント削除機能 %>
             <% if current_user == book_comment.user %>
               <td><%= link_to "Destroy", book_book_comments_path(book_comment),method: :delete, class: 'btn btn-danger' %></td>
+            <% else %>
+              <td></td>
             <% end %>
           </tr>
         <% end %>
