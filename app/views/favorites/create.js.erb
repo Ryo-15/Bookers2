@@ -1,2 +1,7 @@
-//いいね差し替え
-$("#book_<%= book.id %>").html("<%= j(render 'books/post', book: book ) %>");
+// いいね差し替え
+// index show で分岐させる
+if(location.pathname == "/books") {
+$("#book_<%= @book.id %>").html("<%= j(render 'books/allposts', book: @book ) %>");
+} else {
+$("#book_<%= @book.id %>").html("<%= j(render 'books/post', book: @book ) %>");
+}

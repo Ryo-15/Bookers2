@@ -36,9 +36,9 @@
         <tbody>
           <% @books.each do |book| %>
             <%# 非同期通信のため、投稿それぞれのtrクラスに一位な値を付与 %>
-            <tr class="book_<%= book.id %>">
-              <%# 非同期通信のため、投稿一覧部分を部分テンプレート化 %>
-              <%= render 'books/post', book: book %>
+            <tr id="book_<%= book.id %>">
+              <%# 非同期通信のため、投稿一覧部分を部分テンプレート化（allposts） %>
+              <%= render 'books/allposts', book: book %>
             </tr>
           <% end %>
         </tbody>

@@ -1,0 +1,23 @@
+<%# books showでのコメントテーブル %>
+<%# 部分テンプレートなので@を消す %>
+
+  <% book_comments.each do |book_comment| %>
+    <tr>
+      <%# コメントユーザープロフィール画像、名前 %>
+      <td>
+        <%= attachment_image_tag book_comment.user, :profile_image, format: 'jpeg', class: "profile-img", fallback: "no_image.jpg", size: "40x40" %>
+        <%= link_to user_path(book_comment.user.id) do %>
+          <%= book_comment.user.name %>
+        <% end %>
+      </td>
+      <td>
+        <div class="comment_entry"><%= book_comment.comment %></div>
+      </td>
+      <%# コメント削除機能 %>
+      <% if current_user == book_comment.user %>
+        <td><%= link_to "Destroy", book_book_comments_path(book_comment),method: :delete, remote: true, class: 'btn btn-danger' %></td>
+      <% else %>
+        <td></td>
+      <% end %>
+    </tr>
+  <% end %>
