@@ -22,7 +22,6 @@ class User < ApplicationRecord
   # いいね、コメントも1:Nになるよう関連付ける
   has_many :favorites, dependent: :destroy
   has_many :book_comments, dependent: :destroy
-
   # フォロー・フォロード機能追加
   has_many :follower, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy # フォロー取得
   has_many :followed, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy # フォロワー取得
@@ -60,5 +59,26 @@ class User < ApplicationRecord
     else
       @user = User.all
     end
+  end
+
+  # prefecture_codeからprefecture_nameに変換するメソッド(カラム設定後に記述)
+  # prefecture_codeはuserが持っているカラム
+  include JpPrefecture
+  jp_prefecture :prefecture_code
+
+  def prefecture_name
+    JpPrefecture::Prefecture.find(code: prefecture_code).try(:name)
+  end
+
+  def prefecture_name=(prefecture_name)
+    self.prefecture_code = JpPrefecture::Prefecture.find(name: prefecture_name).code
+  end
+
+  # バリデーションの前に送信されたaddressの値によってジオコーディング(緯度経度の算出)を行う
+  geocoded_by :address
+  after_validation :geocode
+  # geocoderで使用するaddressを定義
+  def address
+    "%s %s %s" % [prefecture_name, address_city, address_street]
   end
 end

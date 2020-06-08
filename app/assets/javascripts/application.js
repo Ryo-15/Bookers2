@@ -15,4 +15,8 @@
 //= require turbolinks
 //= require jquery
 //= require bootstrap-sprockets
+// 住所検索のため↓
+//= require jquery.jpostal
+// ↓これより上に記述！（読み込まれない）
 //= require_tree .
+

@@ -31,7 +31,7 @@
         </tbody>
       </table>
 
-      <%# コメント一覧（非同期通信のため、部分テンプレート化→book_comment/_comments） %>
+      <%# 非同期通信のため、コメント一覧を部分テンプレート化→book_comment/_comments %>
       <table class="table" id="comment_list">
         <%= render 'book_comments/comments', book_comments: @book.book_comments %>
       </table>
@@ -47,6 +47,3 @@
     </div>
   </div>
 </div>
-
-<%# コメント一覧を部分テンプレートとすること %>
-<%# サーバーからのレスポンスでコメント一覧のテンプレートを返すこと %>
