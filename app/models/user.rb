@@ -79,6 +79,6 @@ class User < ApplicationRecord
   after_validation :geocode
   # geocoderで使用するaddressを定義
   def address
-    "%s %s %s" % [prefecture_name, address_city, address_street]
+    self.prefecture_name + self.address_city + self.address_street
   end
 end

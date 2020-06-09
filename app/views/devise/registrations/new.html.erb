@@ -26,7 +26,7 @@
       <%# 都道府県プルダウン f.collection_select プロパティ名, オブジェクトの配列, value属性の項目, テキストの項目 [, オプション] %>
       <div class="field">
         <%= f.label :prefecture_code %><br />
-        <%= f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :name, :name, class: "address", id: "user_prefecture_code" %>
+        <%= f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :code, :name, class: "address", id: "user_prefecture_code" %>
       </div>
 
       <%# 市区町村 %>
