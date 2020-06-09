@@ -7,7 +7,8 @@ class ApplicationController < ActionController::Base
 
   #sign_up時の登録情報追加
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :email, :postcode, :prefecture_code, :address_city, :address_street])
+    # 下の行はregistrations_controllerへ移動
+    # devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :email, :postcode, :prefecture_code, :address_city, :address_street])
     devise_parameter_sanitizer.permit(:sign_in, keys: [:name]) # ログイン時はnameを使用
   end
 

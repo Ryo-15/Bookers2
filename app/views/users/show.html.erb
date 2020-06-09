@@ -43,6 +43,7 @@
           <% if @user.id == current_user.id %>
             <div class="your_map">
               <h2>Your MAP</h2>
+              <%# ここでマップを呼び出し %>
               <div id="map" data-address="<%= @user.address %>" data-prefecture="<%= @user.prefecture_code %>" ></div>
             </div>
           <% end %>
@@ -52,21 +53,30 @@
   </div>
 </div>
 
+<%# マップ本体の記述 %>
 <script>
+/*
+mapを関数の外で定義(codeAddressでも使うため)
+geocoderを用意
+*/
   let geocoder
+
   function initMap() {
+    // geocoderを初期化
     geocoder = new google.maps.Geocoder()
+    // 入力を取得
     var initMap = document.getElementById('map')
     console.log(initMap)
-    // latitude,longitudeから位置を特定
+
     var map = new google.maps.Map(initMap, {
               zoom: 15,
               });
 
-  var inputAddress = initMap.getAttribute('data-address')
-  console.log(inputAddress)
-  // geocodingしたあとmapを移動
-  geocoder.geocode( { 'address': inputAddress}, function(results, status) {
+    var inputAddress = initMap.getAttribute('data-address')
+    console.log(inputAddress)
+
+    // geocodingしたあとmapを移動
+    geocoder.geocode( { 'address': inputAddress}, function(results, status) {
     if (status == 'OK') {
       // map.setCenterで地図が移動
       map.setCenter(results[0].geometry.location);
