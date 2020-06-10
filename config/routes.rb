@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'chat/show'
   # deviseを使用する際にURLとしてusersを含む
   # コントローラのカスタマイズ反映(ログイン後画面遷移)
   devise_for :users, controllers: { registrations: 'users/registrations',sessions: 'users/sessions' }

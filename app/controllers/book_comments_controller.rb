@@ -10,18 +10,18 @@ class BookCommentsController < ApplicationController
     # @book_comment.book_id = params[:book_id].to_i
     @book_comment.save
     @book_comments = Book.find(params[:book_id]).book_comments
-    # 直線の画面に戻るリダイレクト（＋できなかった場合のパス）
+    # ↓直線の画面に戻るリダイレクト（＋できなかった場合のパス）
     # redirect_back(fallback_location: books_path)
-    # 非同期通信にするためコメントアウト
+    # 非同期通信にするためコメントアウトした
   end
 
   def destroy
     @book_comment = BookComment.find(params[:book_id])
     @book_comment.destroy
     @book_comments = Book.find(@book_comment.book_id).book_comments
-    # 直線の画面に戻るリダイレクト（＋できなかった場合のパス）
+    # ↓直線の画面に戻るリダイレクト（＋できなかった場合のパス）
     # redirect_back(fallback_location: books_path)
-    # 非同期通信にするためコメントアウト
+    # 非同期通信にするためコメントアウトした
   end
 
   private

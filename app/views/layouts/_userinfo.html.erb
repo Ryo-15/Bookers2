@@ -30,6 +30,9 @@
       </tbody>
     </table>
 
+    <%# チャットボタン表示 %>
+    <%= link_to "チャットを始める", "chat_showへのパス" class: "btn btn-success btn-block" %>
+
     <%# ボタン表示の切替 %>
     <%# 表示ユーザーが自分だった場合、編集ページへのリンク %>
     <% if user.id == current_user.id %>

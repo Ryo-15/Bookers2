@@ -12,6 +12,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     super
+    # super…子クラスのインスタンスに対して、同名の親クラスのメソッドをそのまま呼び出すことが出来る
     ThanksMailer.signup_thanks_mail(resource).deliver
   end
 
