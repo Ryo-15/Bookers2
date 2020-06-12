@@ -28,5 +28,8 @@ Rails.application.routes.draw do
   # 検索機能のルーティング(検索結果viewへ)
   get "/search" => "search#search"
 
+  # チャット機能のルーティング
+  get 'chat/:id' => 'chat#show', as: 'chat'
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
