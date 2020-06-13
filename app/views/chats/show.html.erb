@@ -1,4 +1,3 @@
-<%# トークルームのshow画面 %>
 <h1 id="room" data-room="<%= @room.id %>" data-user="<%= current_user.id %>"><%= @user.name %> さんとのチャット</h1>
 
 <div class="message" style="width: 400px;">
@@ -11,4 +10,7 @@
   <% end %>
 </div>
 
-<input type="text" class="post">
+<%= form_with model: @chat, data: {remote: true} do |f| %>
+  <%= f.text_field :message %>
+  <%= f.hidden_field :room_id , value: @room.id %>
+<% end %>

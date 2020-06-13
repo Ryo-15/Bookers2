@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'chat/show'
   # deviseを使用する際にURLとしてusersを含む
   # コントローラのカスタマイズ反映(ログイン後画面遷移)
   devise_for :users, controllers: { registrations: 'users/registrations',sessions: 'users/sessions' }
@@ -29,7 +28,9 @@ Rails.application.routes.draw do
   get "/search" => "search#search"
 
   # チャット機能のルーティング
-  get 'chat/:id' => 'chat#show', as: 'chat'
+  # get 'chat/:id' => 'chats#show', as: 'chat'
+  # resources :chats, only: [:create]
+  resources :chats, only: %i[create show]
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -2,11 +2,16 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
 
-# :database_authenticatable（パスワードの正確性を検証）
-# :registerable（ユーザ登録や編集、削除）
-# :recoverable（パスワードをリセット）
-# :rememberable（ログイン情報を保存）
-# :validatable（emailのフォーマットなどのバリデーション）
+  #  Userモデルに対して、chat,user_roomモデルが1:Nになるよう関連付ける
+  has_many :chats, dependent: :destroy
+  has_many :user_rooms
+  has_many :rooms, through: :user_rooms
+
+  # :database_authenticatable（パスワードの正確性を検証）
+  # :registerable（ユーザ登録や編集、削除）
+  # :recoverable（パスワードをリセット）
+  # :rememberable（ログイン情報を保存）
+  # :validatable（emailのフォーマットなどのバリデーション）
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
@@ -22,9 +27,7 @@ class User < ApplicationRecord
   # いいね、コメントも1:Nになるよう関連付ける
   has_many :favorites, dependent: :destroy
   has_many :book_comments, dependent: :destroy
-  #  Userモデルに対して、chat,user_roomモデルが1:Nになるよう関連付ける
-  has_many :chats, dependent: :destroy
-  has_many :user_rooms, dependent: :destroy, through: :user_rooms
+
   # フォロー・フォロード機能追加
   has_many :follower, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy # フォロー取得
   has_many :followed, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy # フォロワー取得
