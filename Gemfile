@@ -69,7 +69,7 @@ gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
 
 # ブートストラップ
-gem 'bootstrap-sass', '~> 3.3.6'
+gem 'bootstrap-sass', '~> 3.4.1'
 # ブートストラップや非同期通信で使用
 gem 'jquery-rails'
 
