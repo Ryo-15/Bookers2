@@ -13,7 +13,7 @@ class Book < ApplicationRecord
     favorites.where(user_id: user.id).exists?
   end
 
-  # 検索条件
+  # サイト内検索の一致条件
   def self.search(word, match)
     if match == "forward"
       @book = Book.where("title LIKE?","#{word}%")

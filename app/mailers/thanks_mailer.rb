@@ -1,5 +1,5 @@
 class ThanksMailer < ApplicationMailer
-  # 送信元アドレス
+  # 送信元アドレス（ENVで非公開にする）
   default :from => ENV['USER_NAME']
 
   # 受信先アドレス

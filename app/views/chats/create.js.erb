@@ -1,2 +1,3 @@
 $('.message').append("<p style='text-align: right;'><%= @chat.message %></p>");
+// ＝チャットメッセージの投稿後、コメントフォームの値に前回の投稿が残らないようにする
 $('input[type=text]').val("")

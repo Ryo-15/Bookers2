@@ -1,4 +1,4 @@
 // コメント差し替え
 $("#comment_list").html("<%= j(render 'book_comments/comments', book_comments: @book_comments) %>");
-// ≈コメントの投稿後、コメントフォームの値に前回の投稿が残らないようにする
+// ＝コメントの投稿後、コメントフォームの値に前回の投稿が残らないようにする
 $("#book_comment").val('')

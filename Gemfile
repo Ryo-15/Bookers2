@@ -82,3 +82,6 @@ gem 'geocoder'
 # 環境変数を設定できるGem
 # Githubなどにアップロードすべきでない第三者に漏洩すると危険なパスワードや外部のAPIキーの情報を環境変数として管理するため
 gem "dotenv-rails"
+
+# 定時メール配信バッジ処理
+gem "whenever", require: false
