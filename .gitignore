@@ -29,3 +29,6 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+# .envにある環境変数をgit管理下から除く(.env.orgに項目のみ残しておく)
+/.env

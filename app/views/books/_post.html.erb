@@ -31,7 +31,7 @@
 <%# ログインユーザーと一致した場合、編集・削除を表示 %>
 <% if current_user.id == book.user_id %>
   <td><%= link_to "Edit", edit_book_path(book.id), class: 'btn btn-success' %></td>
-  <td><%= link_to "Destroy", book_path(book.id),method: :delete, class: 'btn btn-danger' %></td>
+  <td><%= link_to "Destroy", book_path(book.id), method: :delete, class: 'btn btn-danger' %></td>
 <% else %>
   <td></td>
   <td></td>

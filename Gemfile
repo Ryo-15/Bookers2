@@ -70,6 +70,7 @@ gem "refile-mini_magick"
 
 # ブートストラップ
 gem 'bootstrap-sass', '~> 3.3.6'
+
 # ブートストラップや非同期通信で使用
 gem 'jquery-rails'
 
@@ -83,5 +84,5 @@ gem 'geocoder'
 # Githubなどにアップロードすべきでない第三者に漏洩すると危険なパスワードや外部のAPIキーの情報を環境変数として管理するため
 gem "dotenv-rails"
 
-# 定時メール配信バッジ処理
+# 定時メール配信バッジ処理用gem
 gem "whenever", require: false
