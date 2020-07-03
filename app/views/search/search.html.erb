@@ -2,7 +2,7 @@
 <%# book検索かuser検索かによって条件を分岐する %>
 <div class="container">
   <%# タイトル %>
-  <% if @path == 'users' %> <%# 要確認 %>
+  <% if @path == 'users' %>
     <%# user検索の場合 %>
     <h2>Users search for '<%= @word %>'</h2>
   <% else %>
@@ -12,7 +12,7 @@
 
   <%# 検索結果テーブル %>
   <table class="table">
-    <% if @path == 'users' %> <%# 要確認 %>
+    <% if @path == 'users' %>
       <%# user検索の場合 %>
       <thead>
         <tr>
